@@ -14,7 +14,7 @@ const Review = ({ review }) => {
                         </div>
                     </div>
                   <div>
-                  <h5 className='text-lg'>{name}</h5>
+                  <h5 className='text-lg font-bold'>{name}</h5>
                     <p>{location}</p>
                   </div>
                 </div>
