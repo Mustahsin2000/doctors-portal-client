@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../../src/img-logo.png'
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const Navbar = () => {
+    const {user,logOut} = useContext(AuthContext);
+
+    const handlelogout = () =>{
+        logOut()
+        .then(()=>{})
+        .catch(error=>console.error(error))
+    }
     return (
         <div className="navbar bg-base-100 mt-3 mb-3 mx-11">
             <div className="navbar-start">
@@ -16,6 +24,7 @@ const Navbar = () => {
                         <li><Link to='/about'>About</Link></li>
                         <li><Link to='/reviews'>Reviews</Link></li>
                         <li><Link to='/login'>Login</Link></li>
+                        <li><Link to='/signup'>Signup</Link></li>
                     </ul>
                 </div>
                 <img className='h-12 rounded-full' src={logo} alt="" />
@@ -26,8 +35,15 @@ const Navbar = () => {
                     <li className='hover:bg-cyan-300 rounded hover:text-white'><Link to='/'>Home</Link></li>
                     <li className='hover:bg-cyan-300 rounded hover:text-white'><Link to='/appoinment'>Appoinment</Link></li>
                     <li className='hover:bg-cyan-300 rounded hover:text-white'><Link to='/about'>About</Link></li>
-                    <li className='hover:bg-cyan-300 rounded hover:text-white'><Link to='/reviews'>Reviews</Link></li>
-                    <li className='hover:bg-cyan-300 rounded hover:text-white'><Link to='/login'>Login</Link></li>
+                    
+                    { user?.uid ? 
+                    <>
+                    <li className='hover:bg-cyan-300 rounded hover:text-white'><Link to='/dashboard'>Dashboard</Link></li>
+                     <li className='hover:bg-cyan-300 rounded hover:text-white'><button onClick={handlelogout}>sign out</button></li>
+                    </>
+                            :
+                        <li className='hover:bg-cyan-300 rounded hover:text-white'><Link to='/login'>Login</Link></li>}
+                    <li className='hover:bg-cyan-300 rounded hover:text-white'><Link to='/signup'>Signup</Link></li>
                  </ul>
              </div>
            
