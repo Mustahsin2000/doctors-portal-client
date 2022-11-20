@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Signup = () => {
@@ -11,8 +11,10 @@ const Signup = () => {
 
     const [signupError,setsignuperror] = useState('');
 
+    const navigate = useNavigate();
+
     const handleSignup = (data) =>{
-    console.log(data);
+    // console.log(data);
     setsignuperror('');
     createUser(data.email,data.password)
     .then(result=>{
@@ -23,7 +25,9 @@ const Signup = () => {
             displayName : data.name
         }
         updateUser(userInfo)
-        .then(()=>{ })
+        .then(()=>{
+            saveUser(data.name,data.email);
+         })
         .catch(err=>console.log(err))
     })
     .catch(error=>{
@@ -32,6 +36,24 @@ const Signup = () => {
         setsignuperror(error.message);
     })
     }
+
+
+    const saveUser = (name,email) =>{
+        const user = {name,email};
+        fetch('http://localhost:5000/users',{
+            method:'POST',
+            headers:{
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            navigate('/');
+        })
+    }
+
     return (
         <div className='h-[800px]  flex justify-center items-center'>
             <div className='w-96 p-7'>
