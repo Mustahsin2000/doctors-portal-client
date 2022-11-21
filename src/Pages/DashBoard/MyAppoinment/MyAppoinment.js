@@ -10,7 +10,11 @@ const MyAppoinment = () => {
     const {data: bookings = [] } = useQuery({
         queryKey:['bookings',user?.email],
         queryFn:async () =>{
-            const res= await fetch(url);
+            const res= await fetch(url,{
+                headers:{
+                    authorization:`bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
@@ -22,7 +26,7 @@ const MyAppoinment = () => {
 
             <div className="overflow-x-auto mt-6">
                 <table className="table w-full">
-                    {/* <!-- head --> */}
+                  
                     <thead>
                         <tr>
                             <th></th>
@@ -33,7 +37,7 @@ const MyAppoinment = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* <!-- row 1 --> */}
+                       
                        {
                         bookings.map((booking,i)=> <tr key={booking._id}>
                             <th>{i+1}</th>

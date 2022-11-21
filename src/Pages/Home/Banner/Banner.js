@@ -1,6 +1,7 @@
 import React from 'react';
 import './Banner.css'
 import img from '../../../assets/images/adult-business-care-chair-wallpaper-preview.jpg'
+import { Link } from 'react-router-dom';
 const Banner = () => {
     return (
       <div>
@@ -20,7 +21,7 @@ const Banner = () => {
           <h1 className='text-2xl  font-bold text-white '> handle with care with our excelency </h1>
         </div>
         <div className="absolute flex justify-start transform -translate-y-1/2 w-2/5 left-20 right-5 bottom-1/3  mx-3">
-        <button className="btn btn-active bg-gradient-to-r from-cyan-500 to-blue-500  mr-10 text-white">Get Started</button>
+        <button className="btn btn-active bg-gradient-to-r from-cyan-500 to-blue-500  mr-10 text-white"><Link to='/appoinment'>Appoinment</Link></button>
     
     </div>
          
