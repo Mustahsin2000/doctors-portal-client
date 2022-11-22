@@ -20,14 +20,14 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 text-base-content">
+                    <ul className="menu p-4 w-80 text-base-content mr-6">
                         {/* <!-- Sidebar content here --> */}
-                        <li><Link to='/dashboard'>My Appoinmants</Link></li>
+                        <li className='btn btn-outline btn-primary rounded mb-3'><Link to='/dashboard'>My Appoinmants</Link></li>
                         {
                             isAdmin && <>
-                            <li><Link to='/dashboard/allusers'>All Users</Link></li>
-                            <li><Link to='/dashboard/adddoctor'>Add Doctor</Link></li>
-                            <li><Link to='/dashboard/managedoctors'>Manage Doctors</Link></li>
+                            <li className='btn btn-outline btn-primary rounded mb-3'><Link to='/dashboard/allusers'>All Users</Link></li>
+                            <li className='btn btn-outline btn-primary rounded mb-3'><Link to='/dashboard/adddoctor'>Add Doctor</Link></li>
+                            <li className='btn btn-outline btn-primary rounded'><Link to='/dashboard/managedoctors'>Manage Doctors</Link></li>
                             </>
                         }
                     </ul>
